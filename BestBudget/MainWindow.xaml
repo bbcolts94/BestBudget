@@ -1,0 +1,43 @@
+﻿<Window x:Class="BestBudget.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BestBudget"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesignColors="clr-namespace:MaterialDesignColors;assembly=MaterialDesignColors"
+        Title="Welcome, what's your name?" Height="250" Width="565"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="20"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignLightBackground}"
+        FontFamily="{DynamicResource MaterialDesignFont}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="50" />
+        </Grid.ColumnDefinitions>
+        <TextBox
+          x:Name="NameTextBox"
+          materialDesign:HintAssist.Hint="Name - We use this to customize your dashboard."
+          materialDesign:HintAssist.HelperText="NOTE: We do not sell, distribute, store any of your data. All information collected is stored locally."
+          Grid.Row="1" Grid.Column="1" 
+        />
+        <materialDesign:PackIcon Foreground="#7bb700" Kind="AccountCircleOutline" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="50" />
+        <Button
+          Style="{StaticResource MaterialDesignRaisedAccentButton}"
+          ToolTip="Resource name: MaterialDesignRaisedAccentButton"
+          materialDesign:RippleAssist.Feedback="#DD000000"
+          Content="CONTINUE" 
+          Grid.Column="1" Grid.Row="3" Click="Continue"/>
+    </Grid>
+</Window>
