@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using SQLite;
 using BestBudget.Models;
+using BestBudget.Views;
 namespace BestBudget
 {
     public partial class MainWindow : Window
@@ -22,6 +23,30 @@ namespace BestBudget
         public MainWindow()
         {
             InitializeComponent();
+
+            string db = (Application.Current as BestBudget.App).databasePath;
+            using (SQLiteConnection sQLiteConnection = new SQLiteConnection(db))
+            {
+                try
+                {
+                    string query = "SELECT NAME FROM NameGiven";
+                    List<NameGiven> returnedData = new List<NameGiven>(); 
+                    returnedData = sQLiteConnection.Query<NameGiven>(query);
+                    string returnedName = returnedData[0].Name;
+                    NameTextBox.Text = returnedName; 
+
+                    //if(returnedName != null)
+                    //{
+                    //    BudgetMain objMainWindow = new BudgetMain();
+                    //    this.Visibility = Visibility.Hidden;
+                    //    objMainWindow.Show();
+                    //}
+                }
+                catch(Exception)
+                {
+                    //don't care..
+                }
+            }
 
         }
         void Continue(object sender, RoutedEventArgs e)
@@ -31,14 +56,17 @@ namespace BestBudget
             {
                 try
                 {
+                    sQLiteConnection.DeleteAll<NameGiven>();
                     var name = new NameGiven
                     {
                         Name = NameTextBox.Text
                     };
                     sQLiteConnection.Insert(name);
-
+                    BudgetMain objMainWindow = new BudgetMain();
+                    this.Visibility = Visibility.Hidden;
+                    objMainWindow.Show();
                 } 
-                    catch(Exception)
+                catch(Exception)
                 {
                     sQLiteConnection.CreateTable<NameGiven>();
                     sQLiteConnection.CreateTable<Budget>();
@@ -48,6 +76,9 @@ namespace BestBudget
                         Name = NameTextBox.Text
                     };
                     sQLiteConnection.Insert(name);
+                    BudgetMain objMainWindow = new BudgetMain();
+                    this.Visibility = Visibility.Hidden;
+                    objMainWindow.Show();
                 }
             }
 

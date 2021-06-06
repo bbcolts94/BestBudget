@@ -30,7 +30,7 @@
           x:Name="NameTextBox"
           materialDesign:HintAssist.Hint="Name - We use this to customize your dashboard."
           materialDesign:HintAssist.HelperText="NOTE: We do not sell, distribute, store any of your data. All information collected is stored locally."
-          Grid.Row="1" Grid.Column="1" 
+          Grid.Row="1" Grid.Column="1" Text="" 
         />
         <materialDesign:PackIcon Foreground="#7bb700" Kind="AccountCircleOutline" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="50" />
         <Button

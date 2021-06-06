@@ -1,0 +1,74 @@
+﻿<Window x:Class="BestBudget.Views.PushInfo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BestBudget.Views"
+        mc:Ignorable="d"
+        Title="" Height="450" Width="800"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesignColors="clr-namespace:MaterialDesignColors;assembly=MaterialDesignColors"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="20"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignLightBackground}"
+        FontFamily="{DynamicResource MaterialDesignFont}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="100" />
+            <RowDefinition Height="100" />
+            <RowDefinition Height="100" />
+
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <Button x:Name="back"
+            Grid.Column="0"
+            Grid.Row="0"
+  Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
+  ToolTip="MaterialDesignFloatingActionDarkButton" Width="50" Height="50" Click="back_Click">
+            <materialDesign:PackIcon
+    Kind="ArrowLeft" />
+        </Button>
+        <TextBlock FontSize="40" FontWeight="Thin" Grid.Column="1" Grid.Row="0" x:Name="HeaderText" Text="ENTER FIELDS AND COMPLETE!" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+        <TextBox
+            x:Name="LenderName"
+            Grid.Row="1"
+            Grid.Column="1"
+          materialDesign:HintAssist.Hint="Lender Name"
+          materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
+          materialDesign:HintAssist.FloatingScale="0.50"
+
+          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+          FontSize="24" />
+        <TextBox
+            x:Name="Amount"
+            Grid.Row="2"
+            Grid.Column="1"
+          materialDesign:HintAssist.Hint="Amount - Only numbers go here - Ex: 124"
+          materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
+          materialDesign:HintAssist.FloatingScale="0.50"
+          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+          FontSize="24" />
+        <TextBox
+            x:Name="Occurance"
+            Grid.Row="3"
+            Grid.Column="1"
+          materialDesign:HintAssist.Hint="Occurance - One Month = 1"
+          materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
+          materialDesign:HintAssist.FloatingScale="0.50"
+          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+          FontSize="24" />
+        <Button x:Name="completebutton"
+          Style="{StaticResource MaterialDesignRaisedDarkButton}"
+          ToolTip="Click to Complete!"
+          materialDesign:RippleAssist.Feedback="#DD000000" 
+          Grid.Column="1" Grid.Row="6" Click="completebutton_Click" />
+    </Grid>
+</Window>

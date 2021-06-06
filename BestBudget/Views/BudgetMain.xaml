@@ -1,0 +1,67 @@
+﻿<Window x:Class="BestBudget.Views.BudgetMain"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BestBudget.Views"
+        mc:Ignorable="d"
+        Title="" Height="450" Width="800"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesignColors="clr-namespace:MaterialDesignColors;assembly=MaterialDesignColors"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="20"
+        TextOptions.TextFormattingMode="Ideal" 
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignLightBackground}"
+        FontFamily="{DynamicResource MaterialDesignFont}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <Button x:Name="Account"
+        Grid.Column="0"
+        Grid.Row="0"
+          Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
+          ToolTip="Change your name" Height="50" Width="50" Click="Account_Click">
+        <materialDesign:PackIcon
+        Kind="AccountCircleOutline" />
+        </Button>
+        <DataGrid
+          x:Name="FancyDataGrid"
+          Grid.Row="1"
+          Grid.Column="1"
+           ColumnWidth="*"
+          AutoGenerateColumns="false"
+          CanUserAddRows="False"
+          SelectionUnit="Cell"
+          SelectionMode="Extended" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Number" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Lender" Binding="{Binding Lender}"/>
+                <DataGridTextColumn Header="Payment" Binding="{Binding Payment}"/>
+                <DataGridTextColumn Header="Occurance" Binding="{Binding Occurance}"/>
+            </DataGrid.Columns>
+            <DataGrid.ItemContainerStyle>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="MouseDoubleClick" Handler="FancyDataGrid_MouseDoubleClick"/>
+                </Style>
+            </DataGrid.ItemContainerStyle>
+        </DataGrid>
+        <TextBlock Grid.Row="0" FontSize="30" FontWeight="Bold" x:Name="NameDisplay" Grid.Column="1" HorizontalAlignment="Left" Text="what am i doing here..." TextWrapping="Wrap" VerticalAlignment="Bottom" Margin="10,0,0,0"/>
+                <Button x:Name="addbutton"
+          Style="{StaticResource MaterialDesignRaisedDarkButton}"
+          ToolTip="Add information about your debt."
+          materialDesign:RippleAssist.Feedback="#DD000000"
+          Content="ADD INFORMATION" 
+          Grid.Column="1" Grid.Row="3" Click="addbutton_Click" />
+
+    </Grid>
+</Window>
