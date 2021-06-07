@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:materialDesignColors="clr-namespace:MaterialDesignColors;assembly=MaterialDesignColors"
-        Title="Welcome, what's your name?" Height="250" Width="565"
+        Title="" Height="250" Width="565"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="20"
         TextOptions.TextFormattingMode="Ideal" 
@@ -32,10 +32,15 @@
           materialDesign:HintAssist.HelperText="NOTE: We do not sell, distribute, store any of your data. All information collected is stored locally."
           Grid.Row="1" Grid.Column="1" Text="" 
         />
-        <materialDesign:PackIcon Foreground="#7bb700" Kind="AccountCircleOutline" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="50" Height="50" />
+        <Button x:Name="back"
+            Grid.Column="0"
+            Grid.Row="1"
+  Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
+  ToolTip="MaterialDesignFloatingActionDarkButton" Width="50" Height="50">
+            <materialDesign:PackIcon Kind="AccountCircle" Height="40" Width="40" />
+        </Button>
         <Button
-          Style="{StaticResource MaterialDesignRaisedAccentButton}"
-          ToolTip="Resource name: MaterialDesignRaisedAccentButton"
+          Style="{StaticResource MaterialDesignRaisedDarkButton}"
           materialDesign:RippleAssist.Feedback="#DD000000"
           Content="CONTINUE" 
           Grid.Column="1" Grid.Row="3" Click="Continue"/>

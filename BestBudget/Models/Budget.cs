@@ -14,8 +14,7 @@ namespace BestBudget.Models
         public string Lender { get; set; }
 
         public int Payment { get; set; }
+        public string PaymentAmount { get; set; }
         public int Occurance { get; set; }
-        public int Paycheck { get; set; }
-        public int PaycheckOccurance { get; set; }
     }
 }

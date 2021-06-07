@@ -1,0 +1,39 @@
+﻿<Window x:Class="BestBudget.Views.PaycheckView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BestBudget.Views"
+                xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+
+        mc:Ignorable="d"
+        Title="" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+
+        <TextBox
+           x:Name="paycheckAmount"
+          materialDesign:HintAssist.Hint="Paycheck Amount"
+          materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
+          materialDesign:HintAssist.FloatingScale="1"
+          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+          FontSize="50"  />
+        <TextBox
+          x:Name="paycheckOccurance"
+          materialDesign:HintAssist.Hint="Paycheck Occurance"
+          materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
+          materialDesign:HintAssist.FloatingScale="1"
+          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+          FontSize="50" Margin="0,192,0,0" Grid.RowSpan="2"/>
+        <Button x:Name="addbutton"
+          Style="{StaticResource MaterialDesignRaisedDarkButton}"
+          ToolTip="Add information about your debt."
+          materialDesign:RippleAssist.Feedback="#DD000000"
+          Content="ADD INFORMATION" 
+          Grid.Column="1" Grid.Row="3" Click="addbutton_Click" />
+    </Grid>
+</Window>

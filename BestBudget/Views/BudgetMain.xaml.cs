@@ -31,19 +31,42 @@ namespace BestBudget.Views
             {
                 try
                 {
+                    int MonthlyIncome;
+                    int MonthlyOut = 0;
                     debt = new ObservableCollection<Budget>();
                     string query = "SELECT * FROM Budget";
                     List<Budget> budgetReturnedList = new List<Budget>();
                     budgetReturnedList = sQLiteConnection.Query<Budget>(query);
-
                     foreach(var item in budgetReturnedList) {
-                        debt.Add(new Budget() { Id = item.Id, Lender = item.Lender, Payment = item.Payment, Occurance = item.Occurance });
+                        debt.Add(new Budget() { Id = item.Id, Lender = item.Lender, PaymentAmount = "$ " + item.Payment.ToString(), Occurance = item.Occurance });
+
+                        MonthlyOut = item.Payment * item.Occurance + MonthlyOut;
+
                     }
                     FancyDataGrid.ItemsSource = debt;
                     query = "SELECT Name FROM NameGiven";
                     List<NameGiven> nameReturned = new List<NameGiven>();
                     nameReturned = sQLiteConnection.Query<NameGiven>(query);
                     NameDisplay.Text = nameReturned[0].Name;
+
+                    query = "SELECT * FROM Paycheck";
+                    List<Paycheck> incomeReturned = new List<Paycheck>();
+                    incomeReturned = sQLiteConnection.Query<Paycheck>(query);
+
+                    IncomeAmount.Text = "$ " + incomeReturned[0].PaycheckAmount.ToString();
+                    MonthlyIncome = incomeReturned[0].PaycheckAmount * incomeReturned[0].PaycheckOccurance;
+                    int monthlyNet = MonthlyIncome - MonthlyOut;
+                    LeftOverCash.Text = monthlyNet.ToString();
+                    if (monthlyNet > 0)
+                    {
+                        LeftOverCash.Foreground = new SolidColorBrush(Colors.Lime);
+
+                    }
+                    else
+                    {
+                        LeftOverCash.Foreground = new SolidColorBrush(Colors.Red);
+                    }
+
 
 
 
@@ -75,6 +98,13 @@ namespace BestBudget.Views
             PushInfo dataEntryView = new PushInfo(budgetDataFromRow);
             this.Visibility = Visibility.Hidden;
             dataEntryView.ShowDialog();
+        }
+
+        private void PaycheckButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Visibility = Visibility.Hidden;
+            PaycheckView paycheckView = new PaycheckView();
+            paycheckView.ShowDialog();
         }
     }
 }

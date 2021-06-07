@@ -31,14 +31,27 @@
         Grid.Row="0"
           Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
           ToolTip="Change your name" Height="50" Width="50" Click="Account_Click">
-        <materialDesign:PackIcon
-        Kind="AccountCircleOutline" />
+            <materialDesign:PackIcon
+        Kind="AccountCircleOutline" Height="40" Width="40" />
         </Button>
+        <Button x:Name="PaycheckButton"
+        Grid.Column="0"
+        Grid.Row="2"
+          Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
+          ToolTip="Change your name" Height="50" Width="50" Click="PaycheckButton_Click" >
+            <materialDesign:PackIcon
+        Kind="CurrencyUsd" Height="40" Width="50"/>
+        </Button>
+        <TextBlock Text="INCOME MONTHLY - " Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" FontWeight="Thin" Margin="10,0,0,0" />
+        <TextBlock Text="AFTER BILLS - " Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Thin" Margin="10,0,0,0" />
+        <TextBox x:Name="LeftOverCash" Foreground="Lime" Text="PLACEHOLDER" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="2" Margin="440,0,0,0" />
+        <TextBox x:Name="IncomeAmount" Foreground="Lime" Text="PLACEHOLDER" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="2" Margin="195,0,0,0"/>
+
         <DataGrid
           x:Name="FancyDataGrid"
           Grid.Row="1"
           Grid.Column="1"
-           ColumnWidth="*"
+          ColumnWidth="*"
           AutoGenerateColumns="false"
           CanUserAddRows="False"
           SelectionUnit="Cell"
@@ -46,7 +59,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Number" Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="Lender" Binding="{Binding Lender}"/>
-                <DataGridTextColumn Header="Payment" Binding="{Binding Payment}"/>
+                <DataGridTextColumn Header="Payment" Binding="{Binding PaymentAmount}" Foreground="Red"/>
                 <DataGridTextColumn Header="Occurance" Binding="{Binding Occurance}"/>
             </DataGrid.Columns>
             <DataGrid.ItemContainerStyle>
@@ -55,8 +68,8 @@
                 </Style>
             </DataGrid.ItemContainerStyle>
         </DataGrid>
-        <TextBlock Grid.Row="0" FontSize="30" FontWeight="Bold" x:Name="NameDisplay" Grid.Column="1" HorizontalAlignment="Left" Text="what am i doing here..." TextWrapping="Wrap" VerticalAlignment="Bottom" Margin="10,0,0,0"/>
-                <Button x:Name="addbutton"
+        <TextBlock Grid.Row="0" FontSize="30" FontWeight="Thin" x:Name="NameDisplay" Grid.Column="1" HorizontalAlignment="Left" Text="what am i doing here..." TextWrapping="Wrap" VerticalAlignment="Bottom" Margin="10,0,0,0"/>
+        <Button x:Name="addbutton"
           Style="{StaticResource MaterialDesignRaisedDarkButton}"
           ToolTip="Add information about your debt."
           materialDesign:RippleAssist.Feedback="#DD000000"
