@@ -53,8 +53,12 @@ namespace BestBudget.Views
                     List<Paycheck> incomeReturned = new List<Paycheck>();
                     incomeReturned = sQLiteConnection.Query<Paycheck>(query);
 
-                    IncomeAmount.Text = "$ " + incomeReturned[0].PaycheckAmount.ToString();
                     MonthlyIncome = incomeReturned[0].PaycheckAmount * incomeReturned[0].PaycheckOccurance;
+                    IncomeAmount.Text = "$ " + MonthlyIncome.ToString();
+
+
+
+
                     int monthlyNet = MonthlyIncome - MonthlyOut;
                     LeftOverCash.Text = monthlyNet.ToString();
                     if (monthlyNet > 0)
