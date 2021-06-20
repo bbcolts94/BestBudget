@@ -89,7 +89,8 @@ namespace BestBudget.Views
                     {
                         Lender = LenderName.Text,
                         Occurance = Int32.Parse(Occurance.Text),
-                        Payment = Int32.Parse(Amount.Text)
+                        Payment = Int32.Parse(Amount.Text),
+                        PaymentDate = PaymentDate.Text
                     };
                     sQLiteConnection.Insert(insertData);
                 }

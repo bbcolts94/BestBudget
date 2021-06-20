@@ -23,7 +23,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="50" />
+            <RowDefinition Height="100" />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
         <Button x:Name="Account"
@@ -42,10 +42,13 @@
             <materialDesign:PackIcon
         Kind="CurrencyUsd" Height="40" Width="50"/>
         </Button>
-        <TextBlock Text="INCOME MONTHLY - " Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" FontWeight="Thin" Margin="10,0,0,0" />
-        <TextBlock Text="AFTER BILLS - " Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Thin" Margin="10,0,0,0" />
-        <TextBox x:Name="LeftOverCash" Foreground="Lime" Text="PLACEHOLDER" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="2" Margin="440,0,0,0" />
-        <TextBox x:Name="IncomeAmount" Foreground="Lime" Text="PLACEHOLDER" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="2" Margin="195,0,0,0"/>
+        <TextBlock Text="INCOME MONTHLY - " Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" FontWeight="Thin" Margin="10,0,0,0" />
+        <TextBlock Text="Money Left this pay period after bills - " Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" FontWeight="Thin" Margin="10,0,0,0" />
+
+        <TextBlock Text="AFTER BILLS - " Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Thin" Margin="350,0,0,0" />
+        <TextBox x:Name="LeftOverCash" Foreground="Lime" Text="PLACEHOLDER" FontWeight="SemiBold" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="2" Margin="500,0,0,0" />
+        <TextBox x:Name="IncomeAmount" Foreground="Lime" Text="PLACEHOLDER" FontWeight="SemiBold" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="2" Margin="195,0,0,0"/>
+        <TextBox x:Name="MoneyLeftAfterBills" Foreground="Lime" Text="PLACEHOLDER" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="2" Margin="350,0,0,0"/>
 
         <DataGrid
           x:Name="FancyDataGrid"

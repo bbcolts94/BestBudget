@@ -11,5 +11,6 @@ namespace BestBudget.Models
     {
         public int PaycheckAmount { get; set; }
         public int PaycheckOccurance { get; set; }
+        public string LastPayCheckDate { get; set; }
     }
 }

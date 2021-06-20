@@ -7,9 +7,10 @@
                 xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 
         mc:Ignorable="d"
-        Title="" Height="450" Width="800">
+        Title="" Height="600" Width="800">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="50" />
@@ -17,18 +18,28 @@
 
         <TextBox
            x:Name="paycheckAmount"
+            Grid.Row="0"
           materialDesign:HintAssist.Hint="Paycheck Amount"
           materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
           materialDesign:HintAssist.FloatingScale="1"
           Style="{StaticResource MaterialDesignFloatingHintTextBox}"
           FontSize="50"  />
         <TextBox
-          x:Name="paycheckOccurance"
-          materialDesign:HintAssist.Hint="Paycheck Occurance"
+           x:Name="paycheckOccurance"
+            Grid.Row="1"
+          materialDesign:HintAssist.Hint="How often per month"
           materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
           materialDesign:HintAssist.FloatingScale="1"
           Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-          FontSize="50" Margin="0,192,0,0" Grid.RowSpan="2"/>
+          FontSize="50"  />
+        <TextBox
+           x:Name="LastPayCheckDate"
+            Grid.Row="2"
+          materialDesign:HintAssist.Hint="LAST PAYCHECKDATE - mm/dd/yyyy"
+          materialDesign:TextFieldAssist.TextBoxViewMargin="1 0 1 0"
+          materialDesign:HintAssist.FloatingScale="1"
+          Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+          FontSize="50"  />
         <Button x:Name="addbutton"
           Style="{StaticResource MaterialDesignRaisedDarkButton}"
           ToolTip="Add information about your debt."

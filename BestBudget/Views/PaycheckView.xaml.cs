@@ -35,6 +35,7 @@ namespace BestBudget.Views
                     paychecks = sQLiteConnection.Query<Paycheck>(query);
                     paycheckAmount.Text = paychecks[0].PaycheckAmount.ToString();
                     paycheckOccurance.Text = paychecks[0].PaycheckOccurance.ToString();
+                    LastPayCheckDate.Text = paychecks[0].LastPayCheckDate;
                 }
                 catch (Exception)
                 {
@@ -55,8 +56,9 @@ namespace BestBudget.Views
                     sQLiteConnection.DeleteAll<Paycheck>();
                     var insertData = new Paycheck
                     {
-                       PaycheckAmount = Int32.Parse(paycheckAmount.Text),
-                       PaycheckOccurance = Int32.Parse(paycheckOccurance.Text)
+                        PaycheckAmount = Int32.Parse(paycheckAmount.Text),
+                        PaycheckOccurance = Int32.Parse(paycheckOccurance.Text),
+                        LastPayCheckDate = LastPayCheckDate.Text
                     };
                     sQLiteConnection.InsertOrReplace(insertData);
                 }
