@@ -63,7 +63,7 @@
                 <DataGridTextColumn Header="Number" Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="Lender" Binding="{Binding Lender}"/>
                 <DataGridTextColumn Header="Payment" Binding="{Binding PaymentAmount}" Foreground="Red"/>
-                <DataGridTextColumn Header="Occurance" Binding="{Binding Occurance}"/>
+                <DataGridTextColumn Header="Payment Date" Binding="{Binding displayDate}"/>
             </DataGrid.Columns>
             <DataGrid.ItemContainerStyle>
                 <Style TargetType="DataGridRow">

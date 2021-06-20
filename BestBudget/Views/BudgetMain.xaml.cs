@@ -47,7 +47,7 @@ namespace BestBudget.Views
                     {
 
                         foreach(var item in budgetReturnedList) {
-                            debt.Add(new Budget() { Id = item.Id, Lender = item.Lender, PaymentAmount = "$ " + item.Payment.ToString(), Occurance = item.Occurance }) ;
+                            debt.Add(new Budget() { Id = item.Id, Lender = item.Lender, PaymentAmount = "$ " + item.Payment.ToString(), displayDate = $"{DateTime.Now.Month}/{Int32.Parse(item.PaymentDate)}/{DateTime.Now.Year}"}) ;
 
                             MonthlyOut = item.Payment * item.Occurance + MonthlyOut;
 
@@ -66,7 +66,7 @@ namespace BestBudget.Views
 
 
 
-                        DateTime LastPaycheckDate = DateTime.Parse(incomeReturned[0].LastPayCheckDate);
+                        DateTime LastPaycheckDate = DateTime.Parse($"{DateTime.Now.Month}/{Int32.Parse(incomeReturned[0].LastPayCheckDate)}/{DateTime.Now.Year}");
                         DateTime nextPaycheckDate = LastPaycheckDate.AddDays(14);
 
                         int MoneyLeftThisPayperiod = MonthlyIncome / incomeReturned[0].PaycheckOccurance;
@@ -77,7 +77,7 @@ namespace BestBudget.Views
 
                             DateTime paymentDate = DateTime.Parse($"{DateTime.Now.Month}/{Int32.Parse(item.PaymentDate)}/{DateTime.Now.Year}");
 
-                            if(paymentDate < nextPaycheckDate && paymentDate > LastPaycheckDate)
+                            if(paymentDate <= nextPaycheckDate && paymentDate >= LastPaycheckDate)
                             {
                                int subtractedAmmt = MoneyLeftThisPayperiod - item.Payment;
                                 MoneyLeftThisPayperiod = subtractedAmmt;
