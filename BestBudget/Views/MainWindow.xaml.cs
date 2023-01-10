@@ -24,7 +24,7 @@ namespace BestBudget
         {
             InitializeComponent();
 
-            string db = (Application.Current as BestBudget.App).databasePath;
+            string db = (Application.Current as App).databasePath;
             using (SQLiteConnection sQLiteConnection = new SQLiteConnection(db))
             {
                 try
@@ -70,11 +70,13 @@ namespace BestBudget
                 {
                     sQLiteConnection.CreateTable<NameGiven>();
                     sQLiteConnection.CreateTable<Budget>();
+                    sQLiteConnection.CreateTable<Paycheck>();
 
                     var name = new NameGiven
                     {
                         Name = NameTextBox.Text
                     };
+
                     sQLiteConnection.Insert(name);
                     BudgetMain objMainWindow = new BudgetMain();
                     this.Visibility = Visibility.Hidden;

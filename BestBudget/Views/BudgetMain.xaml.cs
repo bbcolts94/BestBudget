@@ -31,74 +31,80 @@ namespace BestBudget.Views
             {
                 try
                 {
-                    int MonthlyIncome;
-                    int MonthlyOut = 0;
-                    debt = new ObservableCollection<Budget>();
-
-                    string query = "SELECT * FROM Budget";
-                    List<Budget> budgetReturnedList = new List<Budget>();
-                    budgetReturnedList = sQLiteConnection.Query<Budget>(query);
-                    
-                    query = "SELECT Name FROM NameGiven";
-                    List<NameGiven> nameReturned = new List<NameGiven>();
-                    nameReturned = sQLiteConnection.Query<NameGiven>(query);
-                    NameDisplay.Text = nameReturned[0].Name;
-                    if(budgetReturnedList.Count != 0)
+                    string query = "SELECT * FROM Paycheck";
+                    List<Paycheck> incomeReturned = new List<Paycheck>();
+                    incomeReturned = sQLiteConnection.Query<Paycheck>(query);
+                    if(incomeReturned.Count > 0)
                     {
+                        int MonthlyIncome;
+                        int MonthlyOut = 0;
+                        debt = new ObservableCollection<Budget>();
 
-                        foreach(var item in budgetReturnedList) {
-                            debt.Add(new Budget() { Id = item.Id, Lender = item.Lender, PaymentAmount = "$ " + item.Payment.ToString(), displayDate = $"{DateTime.Now.Month}/{Int32.Parse(item.PaymentDate)}/{DateTime.Now.Year}"}) ;
-
-                            MonthlyOut = item.Payment * item.Occurance + MonthlyOut;
-
-                        }
-                        FancyDataGrid.ItemsSource = debt;
-
-                        query = "SELECT * FROM Paycheck";
-                        List<Paycheck> incomeReturned = new List<Paycheck>();
-                        incomeReturned = sQLiteConnection.Query<Paycheck>(query);
-
-                        MonthlyIncome = incomeReturned[0].PaycheckAmount * incomeReturned[0].PaycheckOccurance;
-                        IncomeAmount.Text = "$ " + MonthlyIncome.ToString();
-
-
-
-
-
-
-                        DateTime LastPaycheckDate = DateTime.Parse($"{DateTime.Now.Month}/{Int32.Parse(incomeReturned[0].LastPayCheckDate)}/{DateTime.Now.Year}");
-                        DateTime nextPaycheckDate = LastPaycheckDate.AddDays(14);
-
-                        int MoneyLeftThisPayperiod = MonthlyIncome / incomeReturned[0].PaycheckOccurance;
-
-                        foreach(var item in budgetReturnedList)
+                        query = "SELECT * FROM Budget";
+                        List<Budget> budgetReturnedList = new List<Budget>();
+                        budgetReturnedList = sQLiteConnection.Query<Budget>(query);
+                    
+                        query = "SELECT Name FROM NameGiven";
+                        List<NameGiven> nameReturned = new List<NameGiven>();
+                        nameReturned = sQLiteConnection.Query<NameGiven>(query);
+                        NameDisplay.Text = nameReturned[0].Name;
+                        if(budgetReturnedList.Count != 0)
                         {
 
+                            foreach(var item in budgetReturnedList) {
+                                debt.Add(new Budget() { Id = item.Id, Lender = item.Lender, PaymentAmount = "$ " + item.Payment.ToString()}) ;
 
-                            DateTime paymentDate = DateTime.Parse($"{DateTime.Now.Month}/{Int32.Parse(item.PaymentDate)}/{DateTime.Now.Year}");
+                                MonthlyOut = item.Payment * item.Occurance + MonthlyOut;
 
-                            if(paymentDate <= nextPaycheckDate && paymentDate >= LastPaycheckDate)
+                            }
+                            FancyDataGrid.ItemsSource = debt;
+
+
+                            MonthlyIncome = incomeReturned[0].PaycheckAmount * incomeReturned[0].PaycheckOccurance;
+                            IncomeAmount.Text = "$ " + MonthlyIncome.ToString();
+
+
+
+
+
+
+                            DateTime LastPaycheckDate = DateTime.Parse($"{DateTime.Now.Month}/{Int32.Parse(incomeReturned[0].LastPayCheckDate)}/{DateTime.Now.Year}");
+                            DateTime nextPaycheckDate = LastPaycheckDate.AddDays(14);
+
+                            int MoneyLeftThisPayperiod = MonthlyIncome / incomeReturned[0].PaycheckOccurance;
+
+                            foreach(var item in budgetReturnedList)
                             {
-                               int subtractedAmmt = MoneyLeftThisPayperiod - item.Payment;
-                                MoneyLeftThisPayperiod = subtractedAmmt;
+
+
+                                DateTime paymentDate = DateTime.Parse($"{DateTime.Now.Month}/{Int32.Parse(item.PaymentDate)}/{DateTime.Now.Year}");
+
+                                if(paymentDate <= nextPaycheckDate && paymentDate >= LastPaycheckDate)
+                                {
+                                   int subtractedAmmt = MoneyLeftThisPayperiod - item.Payment;
+                                    MoneyLeftThisPayperiod = subtractedAmmt;
+                                }
+                            }
+
+                            MoneyLeftAfterBills.Text = MoneyLeftThisPayperiod.ToString();
+
+
+
+                            int monthlyNet = MonthlyIncome - MonthlyOut;
+                            LeftOverCash.Text = monthlyNet.ToString();
+                            if (monthlyNet > 0)
+                            {
+                                LeftOverCash.Foreground = new SolidColorBrush(Colors.Lime);
+
+                            }
+                            else
+                            {
+                                LeftOverCash.Foreground = new SolidColorBrush(Colors.Red);
                             }
                         }
+                    } else
+                    {
 
-                        MoneyLeftAfterBills.Text = MoneyLeftThisPayperiod.ToString();
-
-
-
-                        int monthlyNet = MonthlyIncome - MonthlyOut;
-                        LeftOverCash.Text = monthlyNet.ToString();
-                        if (monthlyNet > 0)
-                        {
-                            LeftOverCash.Foreground = new SolidColorBrush(Colors.Lime);
-
-                        }
-                        else
-                        {
-                            LeftOverCash.Foreground = new SolidColorBrush(Colors.Red);
-                        }
                     }
                 }
                 catch (Exception ex)
